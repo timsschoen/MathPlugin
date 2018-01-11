@@ -6,13 +6,16 @@
 package mathplugin;
 
 import eu.mihosoft.vrl.annotation.ComponentInfo;
+import java.io.Serializable;
 
 /**
  *
  * @author tim
  */
 @ComponentInfo(name="Vector", category="Math")
-public class Vector {
+public class Vector implements Serializable {
+    
+    private static final long serialVersionUID=1;
     public int length;
     public double[] data;
     
@@ -50,6 +53,10 @@ public class Vector {
         }
     }
     
+    public static double[] getData(Vector A) {
+       return A.data;
+    }    
+    
     public void subtract(Vector v) {
         if(v.length != length) {
             throw new RuntimeException("vectors dont have the same length");
@@ -59,7 +66,7 @@ public class Vector {
             this.data[i] -= v.data[i];
         }            
     }
-    
+        
     public void scale(double factor) {
         for(int i = 0; i < length; i++) {
             this.data[i] *= factor;
@@ -101,6 +108,28 @@ public class Vector {
         }
         return Math.sqrt(norm);
     }
+    
+    public static double VectorL2Norm(Vector A) {
+        Vector C = new Vector(A);
+        return C.GetL2Norm();
+    }
+    
+    public static double VectorMaxNorm(Vector A) {
+        Vector C = new Vector(A);
+        return C.GetMaxNorm();
+    }
+    
+    
+    public double GetMaxNorm(){
+        double norm = Math.abs(data[0]);
+        for(int i = 1; i < length; i++) {
+            if(Math.abs(data[i]) > norm) {
+                norm = Math.abs(data[i]);
+            }
+        }
+        return norm;
+    }
+    
     
     @Override
     public String toString() {

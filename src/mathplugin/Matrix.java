@@ -16,8 +16,9 @@ import java.io.Serializable;
  * @author tim
  */
 @ComponentInfo(name="Matrix", category="Math")
-public class Matrix {
+public class Matrix implements Serializable{
     
+  private static final long serialVersionUID=1;
   public int dim1;
   public int dim2;
   
@@ -210,6 +211,22 @@ public class Matrix {
 
       return Result;
     }  
+   
+   private void setRow(int index, Vector row) {
+       if(dim2 != row.length)
+           throw new RuntimeException("Row length is not the same");
+       
+       if(dim1 <= index)
+           throw new RuntimeException("Index i not in matrix");
+       
+       for(int i = 0; i < dim2; i++) {
+           data[index][i] = row.data[i];
+       }
+   }
+   
+   public static double[][] getData(Matrix A) {
+       return A.data;
+   }
    
   @Override
    public String toString() {

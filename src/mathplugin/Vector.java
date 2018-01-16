@@ -45,6 +45,10 @@ public class Vector implements Serializable {
         }
     }
     
+    public static Vector FromArray(double[] v) {
+        return new Vector(v);
+    }
+    
     public Vector(Double[] v){
         this.length = v.length;
         this.data = new double[length];

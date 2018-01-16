@@ -58,7 +58,35 @@ public class Matrix implements Serializable{
       }
   }
   
+    public Matrix(double[] vector, int stride) {
+        if(data.length % stride != 0) {
+            throw new RuntimeException("vector length not divisible by stride");
+        }
+        
+        dim1 = data.length/stride;
+        dim2 = stride;
+        
+        for(int i = 0; i < dim1; i++) {
+          for(int j = 0; j < dim2; j++) {
+              data[i][j] = vector[i*stride + j];
+          }
+      }
+    }
+  
+  public static Matrix FromArray(double[][] v) {
+        return new Matrix(v);
+    }
+  
+  public static Matrix FromVectorStride(double[] v, int stride) {
+      return new Matrix(v,stride);
+  }
+  
   public Vector MultiplyVector(Vector v) {
+      
+      if(v.length != this.dim2) {
+        throw new RuntimeException("cant multiply with vector, wrong dimensions");
+      }
+      
       Vector result = new Vector(dim1);
       
       for(int i = 0; i < dim1; i++) {

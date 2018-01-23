@@ -15,7 +15,7 @@ public class MathPluginConfigurator extends VPluginConfigurator{
 
 public MathPluginConfigurator() {
     //specify the plugin name and version
-   setIdentifier(new PluginIdentifier("MathPlugin", "8"));
+   setIdentifier(new PluginIdentifier("MathPlugin", "9.1"));
 
    // describe the plugin
    setDescription("Vector and Matrix Math");

@@ -113,6 +113,33 @@ public class Vector implements Serializable {
         return Math.sqrt(norm);
     }
     
+    public void normalize() {
+        double norm = GetL2Norm();
+        for(int i = 0; i < length; i++) {
+            data[i] = data[i] / norm;
+        }        
+    }
+    
+    public static Vector Normalize(Vector A) {
+        Vector B = new Vector(A);
+        B.normalize();
+        return B;
+    }   
+    
+    public void fill(Double d) {
+        for(int i = 0; i < length; i++) {
+            data[i] = d;
+        }    
+    }
+    
+    public static double Distance(Vector A, Vector B){
+        double norm = 0;
+        for(int i = 0; i < A.length; i++) {
+            norm += Math.pow((A.data[i]-B.data[i]), 2);
+        }
+        return Math.sqrt(norm);
+    }
+    
     public static double VectorL2Norm(Vector A) {
         Vector C = new Vector(A);
         return C.GetL2Norm();

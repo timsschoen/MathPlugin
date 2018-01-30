@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @author tim
  */
 @ComponentInfo(name="Matrix", category="Math")
-public class Matrix implements Serializable{
+public class Matrix implements Serializable,LUSolverInterface{
     
   private static final long serialVersionUID=1;
   public int dim1;
@@ -268,4 +268,12 @@ public class Matrix implements Serializable{
        
        return result;
    }
+
+    @Override
+    public double[] solve(double[][] A, double[] b) {
+        Matrix MatA = new Matrix(A);
+        Vector Vecb = new Vector(b); 
+        
+        return Matrix.SolveAxb(MatA, Vecb).data;
+    }
 }

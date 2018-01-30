@@ -15,7 +15,7 @@ public class MathPluginConfigurator extends VPluginConfigurator{
 
 public MathPluginConfigurator() {
     //specify the plugin name and version
-   setIdentifier(new PluginIdentifier("MathPlugin", "9.1"));
+   setIdentifier(new PluginIdentifier("MathPlugin", "10.02"));
 
    // describe the plugin
    setDescription("Vector and Matrix Math");
@@ -36,6 +36,7 @@ public void register(PluginAPI api) {
        vapi.addComponent(Vector.class);
        vapi.addComponent(VectorToScalarInterface.class);       
        vapi.addComponent(VectorAndTimeToScalarInterface.class);
+       vapi.addComponent(LUSolverInterface.class);
        }
 }
 
